@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #customers {
+          font-family: Arial, Helvetica, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        #customers td, #customers th {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+        
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+        
+        #customers tr:hover {background-color: #ddd;}
+        
+        #customers th {
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-align: left;
+          background-color: #04AA6D;
+          color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" id="form_submit">
+        <input type="file" name="" id="">
+        <input type="submit" value="Enviar" id="btn-submit">
+    </form>
+
+
+    <table  id="customers">
+        <thead>
+            <tr>
+                <th>Tipo</th>
+                <th>Data</th>
+                <th>Valor</th>
+                <th>CPF</th>
+                <th>Cartao</th>
+                <th>Hora</th>
+                <th>Dono da Loja</th>
+                <th>Nome da Loja</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-operations">
+        <!--
+            <%= @operations.blank? %>
+            <% @operations.each do |operation| %>
+                <tr>
+                    <td><%= opreation.category_type%></td>
+                    <td><%= opreation.date%></td>
+                    <td><%= opreation.value%></td>
+                    <td><%= opreation.individualregistration%></td>
+                    <td><%= opreation.card%></td>
+                    <td><%= opreation.hour%></td>
+                    <td><%= opreation.storename%></td>
+                    <td><%= opreation.storeowner%></td>
+                </tr>
+            <% end %>
+        -->
+        </tbody>
+    </table>
+
+    
+    <script>
+        let btnSubmit = document.getElementById("btn-submit")
+        btnSubmit.addEventListener("click", ()=>{
+            fetch('http://localhost:3000/api/v1/operations')
+            .then(response => response.json()) 
+            .then(result => {
+                debugger
+                console.log(result);
+            })
+            .catch(err => {
+                console.error('Failed retrieving information', err);
+            });
+        })
+
+        fetch('https://ubahthebuilder.tech/posts/1')
+        .then(data => {
+            return data.json();
+        })
+        .then(post => {
+            console.log(post.title);
+        });
+
+        let btnSubmit = document.getElementById("tbody-operations")
+        btnSubmit.addEventListener("click", ()=>{
+            fetch('http://localhost:3000/api/v1/operations')
+            .then(response => response.json()) 
+            .then(result => {
+                debugger
+                console.log(result);
+            })
+            .catch(err => {
+                console.error('Failed retrieving information', err);
+            });
+            
+            for (let index = 0; index < response.length; index++){
+            //insert Row
+            tableRef.insertRow().innerHTML = 
+            "<tr>" +
+            "<td> ${response.category_type} </td>"+
+            "<td> ${response.date} </td>"+
+            "<td> ${response.value} </td>"+
+            "<td> ${response.individualregistration} </td>"+
+            "<td> ${response.card} </td>"+
+            "<td> ${response.hour} </td>"+
+            "<td> ${response.storename} </td>"+
+            "<td> ${response.storeowner} </td>"+
+            + "</tr>";
+    }
+        })
+    </script>
+</body>
+</html>
