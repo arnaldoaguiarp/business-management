@@ -53,21 +53,7 @@
             </tr>
         </thead>
         <tbody id="tbody-operations">
-        <!--
-            <%= @operations.blank? %>
-            <% @operations.each do |operation| %>
-                <tr>
-                    <td><%= opreation.category_type%></td>
-                    <td><%= opreation.date%></td>
-                    <td><%= opreation.value%></td>
-                    <td><%= opreation.individualregistration%></td>
-                    <td><%= opreation.card%></td>
-                    <td><%= opreation.hour%></td>
-                    <td><%= opreation.storename%></td>
-                    <td><%= opreation.storeowner%></td>
-                </tr>
-            <% end %>
-        -->
+        
         </tbody>
     </table>
 
@@ -78,7 +64,6 @@
             fetch('http://localhost:3000/api/v1/operations')
             .then(response => response.json()) 
             .then(result => {
-                debugger
                 console.log(result);
             })
             .catch(err => {
@@ -86,7 +71,7 @@
             });
         })
 
-        fetch('https://ubahthebuilder.tech/posts/1')
+        fetch('http://localhost:3000/api/v1/operations')
         .then(data => {
             return data.json();
         })
@@ -94,33 +79,31 @@
             console.log(post.title);
         });
 
-        let btnSubmit = document.getElementById("tbody-operations")
-        btnSubmit.addEventListener("click", ()=>{
+        let updtTable = document.getElementById("tbody-operations")
+        updtTable.addEventListener("click", ()=>{
             fetch('http://localhost:3000/api/v1/operations')
             .then(response => response.json()) 
             .then(result => {
-                debugger
                 console.log(result);
             })
             .catch(err => {
                 console.error('Failed retrieving information', err);
             });
             
-            for (let index = 0; index < response.length; index++){
-            //insert Row
-            tableRef.insertRow().innerHTML = 
-            "<tr>" +
-            "<td> ${response.category_type} </td>"+
-            "<td> ${response.date} </td>"+
-            "<td> ${response.value} </td>"+
-            "<td> ${response.individualregistration} </td>"+
-            "<td> ${response.card} </td>"+
-            "<td> ${response.hour} </td>"+
-            "<td> ${response.storename} </td>"+
-            "<td> ${response.storeowner} </td>"+
-            + "</tr>";
-    }
-        })
+            response.forEach(response => {
+                response.innerHTML += 
+                `<tr>
+                <td> ${response.category_type} </td>
+                <td> ${response.date} </td>
+                <td> ${response.value} </td>+
+                <td> ${response.individualregistration} </td>
+                <td> ${response.card} </td>
+                <td> ${response.hour} </td>
+                <td> ${response.storename} </td>
+                <td> ${response.storeowner} </td>
+                </tr>`;
+            })  
+        });
     </script>
 </body>
 </html>
