@@ -83,3 +83,23 @@ Este desafio foi baseado neste outro desafio: https://github.com/lschallenges/da
 ---
 
 Boa sorte!
+
+---
+
+# Documentação para rodar o projeto:
+
+1. Primeiro, você deve realizar um clone do projeto para seu repositório local por meio do seguinte comando:
+```
+git clone https://github.com/arnaldoaguiarp/business-management.git
+```
+2. Após o clone, você deve entrar na pasta 'backend' e rodar o comanda para instalar as gems necessárias localmente e levantar o servidor backend, a API, essas duas ações podem ser realizadas seguindo os seguintes comandos:
+```
+bundle install 
+rails s
+```
+3. Agora que a API já está funcionando, você deve ir até a pasta 'frontend' e abrir o arquivo no navegador web de sua preferência.
+4. Tudo pronto!
+5. Lembrando que, para finalizar a aplicação você deve voltar ao terminal e apertar: CTRL+C.
+
+Qualquer dúvida, pode entrar em contato por meio do email: arnaldoaguiarp@gmail.com
+Obrigado!
